@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Blog System</title>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        {% load static %} 
+        <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+    <style>
+        
+    </style>
+</head>
+
+<body>
+    <section class="p-3 wrapper fadeInDown">
+        <header>
+            <h1 class="text-bold jumbotron">
+                Blog
+                <small class="lead">System</small>
+            </h1>
+        </header>
+
+        <main class="formContent w-50">
+            
+                {% if message %}
+                    <span class="my-3 alert alert-danger">{{ message }}</span>
+                 {% endif %}
+            <form class="w-100" method="POST" action=".">
+                {% csrf_token %}
+
+                <input type="text" id="login" class="fadeIn first" name="username" placeholder="username">
+                <input type="password" id="password" class="fadeIn second" name="password" placeholder="*******">
+                <input type="submit" class="fadeIn third" value="Log In">
+            </form>
+
+            
+            <div id="formFooter">
+                <a class="underlineHover" href="{% url 'signup' %}">Signup</a>
+            </div>
+
+
+        </main>
+       
+    </section>
+
+    <!-- JS Bootstrap -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"
+        integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

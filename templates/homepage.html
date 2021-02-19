@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Blog System</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+</head>
+
+<body>
+
+    
+
+        <div class="d-flex flex-column justify-content-start align-items-center px-3 my-4">
+            <form class="form my-3 w-75" method="POST" action="{% url 'homepage' %}">
+                {% csrf_token %}
+                <input class="form-control" placeholder="search..." type="search" name="search_blogs" />
+            </form>
+            <section class="w-md-75 d-flex flex-column align-items-center align-content-center justify-content-center">
+                <p class="my-2 lead"> Your Blogs
+                </p><br />
+
+                {% include 'header.html' %}
+                <ul>
+                    {% for post in object_list %}
+                    <h2><a href="{% url ''%}">{{ post.title }}</a></h2>
+                    <img src="{{post.cover.url}}" alt="{{post.title}}">
+                    <p>{{ post.body }}<a href="/edit/{{ post.id }}"><span class="glyphicon glyphicon-pencil">Edit</span></a>
+                        <a href="/delete/{{ post.id }}">Delete</a></p>
+                    <small>
+                        {{ post.created_on.date }} |&nbsp;
+                        Categories:&nbsp;
+                        {% for category in post.categories.all %}
+                        <a href="{% url 'categories' category.name %}">
+                            {{ category.name }}
+                        </a>&nbsp;
+                        {% endfor %}
+                    </small>
+                    
+                    {% endfor %}
+                </ul>
+
+                <section class="d-flex justify-content-center">
+                    <a class="btn-lg btn-success add-new-post" href="{% url 'add-new-post' %}">Add New Blog</a>
+                </section>
+    </main>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"
+        integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf"
+        crossorigin="anonymous"></script>
+
+</body>
+{% include 'footer.html' %}
+
+</html>

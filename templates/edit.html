@@ -1,0 +1,116 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>Our Blog System</title>  
+    {% load static %}  
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>  
+</head>  
+<body class="mx-n3">
+  
+  <nav class="d-flex justify-content-end align-items-center flex-row flex-nowrap">
+      <span class="mr-auto pl-5 lead">
+          <a class="" href="{% url 'homepage' %}">Home </a></span>
+      <span class="pr-3"> Welcome, {{ user.username }}</span>
+      <span class="py-3 mr-3">
+          <a class="nav-link border rounded" href="{% url 'logout' %}">Log Out
+          </a>
+      </span>
+  </nav>
+  <main class="mb-5 mx-3">
+      <h1 class="text-bold jumbotron mx-n2">
+          Design Hub
+          <small class="lead">Check In System</small>
+      </h1>
+<!-- <body>  
+<form method="POST" class="post-form" action="/update/{{guest.id}}">  
+        {% csrf_token %}  
+    <div class="container">  
+<br>  
+    <div class="form-group row">  
+    <label class="col-sm-1 col-form-label"></label>  
+    <div class="col-sm-4">  
+    <h3>Update Details</h3>  
+    </div>  
+  </div>  
+    <div class="form-group row">  
+    <label class="col-sm-2 col-form-label">User Id:</label>  
+    <div class="col-sm-4">  
+        <input type="text" name="id" id="id_id" required maxlength="20" value="{{ guest.id }}"/>  
+    </div>  
+  </div>  
+  <div class="form-group row">  
+    <label class="col-sm-2 col-form-label">User Name:</label>  
+    <div class="col-sm-4">  
+        <input type="text" name="name" id="id_name" required maxlength="100" value="{{ guest.name }}" />  
+    </div>  
+  </div>  
+    <!-- <div class="form-group row">  
+    <label class="col-sm-2 col-form-label">User Email:</label>  
+    <div class="col-sm-4">  
+        <input type="email" name="uemail" id="id_uemail" required maxlength="254" value="{{ user.uemail }}" />  
+    </div>   -->
+  <!-- </div>   -->
+    <!-- <div class="form-group row">  
+    <label class="col-sm-2 col-form-label">User Contact:</label>  
+    <div class="col-sm-4">  
+        <input type="text" name="telephone_number" id="id_telephone_number" required maxlength="15" value="{{ guest.telephone_number }}" />  
+    </div>  
+  </div> 
+  <div class="form-group row">  
+    <label class="col-sm-2 col-form-label">User Temperature:</label>  
+    <div class="col-sm-4">  
+        <input type="text" name="temperature" id="id_temperature" required maxlength="5" value="{{ guest.temperature }}" />  
+    </div>  
+  </div>
+    <div class="form-group row">  
+    <label class="col-sm-1 col-form-label"></label>  
+    <div class="col-sm-4">  
+    <button type="submit" class="btn btn-success">Update</button>  
+    </div>  
+  </div>  
+    </div>  
+</form>  
+</body>   -->
+      {% if submitted %}
+      <section class="px-3 py-4">
+          <p class="success lead">
+              submitted
+          </p>
+      </section>
+
+      {% else %}
+      <section class="mx-3 pl-4">
+          <h3 class="py-3">Update Details </h3>
+          <form action="/update/{{guest.id}}" method="POST" class="post">
+            {% csrf_token %}
+              <table class="">
+                  {{ form.as_table }}
+                  <tr>
+                      <th class="px-n2">{{ guest.id }}</th>
+                        <th>{{ guest.id_number }}</th>
+                        <td>{{ guest.name }}</td>
+                        <td>{{ guest.temperature }}</td>
+                        <td>{{ guest.date }}</td>
+                        <td>{{ guest.telephone_number }}</td>
+                        <td>{{ guest.company }}</td>
+                      <td><input type="submit" class="mt-2 btn bg-primary text-white" value="Submit"></td>
+                  </tr>
+              </table>
+          </form>
+      </section>
+      {% endif %}
+  </main>
+</body>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+  crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"
+  integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf"
+  crossorigin="anonymous"></script>
+</footer>
+
+</html>
